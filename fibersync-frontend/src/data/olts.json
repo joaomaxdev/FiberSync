@@ -1,0 +1,11 @@
+[
+  { "nome": "ZTE", "modelo": "ZTE", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "PARKS", "modelo": "PARKS", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "FIBERHOME", "modelo": "FIBERHOME", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "TENDA", "modelo": "TENDA", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "PHYHOME", "modelo": "PHYHOME", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "CIANET", "modelo": "CIANET", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "INTELBRAS", "modelo": "INTELBRAS", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "VSOLUTION", "modelo": "VSOLUTION", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" },
+  { "nome": "TP-LINK", "modelo": "TP-LINK", "ip": "", "porta": "", "protocol": "", "user": "", "password": "" }
+]
