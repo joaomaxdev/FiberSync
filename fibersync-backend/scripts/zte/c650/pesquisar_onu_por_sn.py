@@ -4,7 +4,7 @@ import sys
 import os
 
 # Adicione o caminho para o módulo de configuração
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../src'))
 from config import hostname, port, username, password
 
 def execute_command(channel, command):
@@ -52,29 +52,16 @@ def search_onu_by_sn(serial):
             for line in lines:
                 if line.startswith("gpon_onu"):
                     formatted_result = format_onu_result(line.strip())
-                    print(formatted_result)
-                    return
-        print(f"ONU com serial {serial} não encontrada.")
+                    return formatted_result  # Retorna o resultado formatado
+        return f"ONU com serial {serial} não encontrada."
     except Exception as e:
-        print(f"Erro ao conectar ou executar o comando: {e}")
+        return f"Erro ao conectar ou executar o comando: {e}"
     finally:
         client.close()
 
-def clear_console():
-    """Limpa o console."""
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-def main():
-    while True:
-        serial = input("Digite o número de série da ONU a ser buscada: ")
-        search_onu_by_sn(serial)
-
-        # Pergunta ao usuário se deseja fazer nova busca ou voltar ao menu
-        option = input("\nDeseja fazer uma nova busca? (s/n): ").strip().lower()
-        if option == 'n':
-            clear_console()
-            print("Voltando ao menu inicial...")
-            break
-
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        serial_number = sys.argv[1]
+        print(search_onu_by_sn(serial_number))
+    else:
+        print("Número de série não fornecido.")
