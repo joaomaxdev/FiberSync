@@ -75,7 +75,7 @@ const Olts: React.FC = () => {
                 <td>{olt.protocol}</td>
                 <td>{olt.user}</td>
                 <td className="flex space-x-2">
-                  <Button onClick={() => handleAccessOlt(olt)} variant="link">Acessar</Button>
+                  <Button onClick={() => handleAccessOlt(olt)} className="bg-[#22c55e] text-white" variant="link">Acessar</Button>
                   <Button onClick={() => handleConfigureOlt(olt)} variant="outline">Configurar</Button>
                   <Button onClick={() => handleDeleteOlt(index)} variant="destructive">Deletar</Button>
                 </td>

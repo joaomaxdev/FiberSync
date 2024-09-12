@@ -5,7 +5,7 @@ import time
 import re
 
 # Adicione o caminho para o módulo de configuração
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../src'))
 from config import hostname, port, username, password
 
 def execute_command(channel, command):
@@ -70,10 +70,18 @@ def get_return_signal(slot, pon, onu):
 
         return_signal = parse_output(power_output)
         serial_number = parse_serial_output(serial_output)
-        print_results(return_signal, serial_number, slot, pon, onu)
+        
+        return {
+            "Return Signal": return_signal,
+            "Serial Number": serial_number,
+            "Slot": slot,
+            "PON": pon,
+            "ONU": onu
+        }
 
     except Exception as e:
         print(f"An error occurred: {e}")
+        return None
     finally:
         client.close()
 
@@ -110,42 +118,4 @@ def parse_serial_output(output):
     match = serial_pattern.search(output)
     return match.group(1) if match else "N/A"
 
-def print_results(signals, serial_number, slot, pon, onu):
-    print(f"ZTE C650 | SLOT: {slot} PON: {pon} ONU: {onu}")
-    print("-" * 30)
-    print(f"{'SN:':<20} {serial_number}")
-    print(f"{'Saida SFP Gbic:':<20} {signals['SFP Output Signal']}")
-    print(f"{'Sinal esperado CTO:':<20} {signals['CTO Expected Signal']}")
-    print(f"{'Potência ONU:':<20} {signals['UN Power']}")
-    print(f"{'Sinal de retorno ONU:':<20} {signals['Return Signal']}")
-    print("-" * 30)
-
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-def main():
-    clear_console()
-    while True:
-        choice = input("Deseja pesquisar por (1) Serial Number ou (2) Slot/PON/ONU? Digite 1 ou 2: ")
-        if choice == '1':
-            serial = input("Digite o número de série da ONU a ser buscada: ")
-            result = search_onu_by_sn(serial)
-            if result:
-                slot, pon, id_onu = result
-                get_return_signal(slot, pon, id_onu)
-        elif choice == '2':
-            slot = input("Digite o Slot: ")
-            pon = input("Digite a PON: ")
-            onu = input("Digite o ID da ONU: ")
-            get_return_signal(slot, pon, onu)
-        else:
-            print("Opção inválida. Tente novamente.")
-
-        option = input("\nDeseja fazer uma nova busca? (s/n): ").strip().lower()
-        if option == 'n':
-            clear_console()
-            print("Saindo...")
-            break
-
-if __name__ == "__main__":
-,
+# Função principal removida, pois não é mais necessária ao usar a API
